@@ -40,12 +40,12 @@ description: "Task list for the 구직자 및 채용자 서비스 Frontend 개�
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Setup base React Router configuration. Path: `./src/App.jsx`
-- [ ] T005 [P] Implement JWT-based authentication service and context. Paths: `./src/services/authService.js`, `./src/context/AuthContext.jsx`
-- [ ] T006 [P] Setup API client configuration for RESTful API. Path: `./src/services/apiClient.js`
-- [ ] T007 Create base models/entities that all stories depend on. Path: `./src/types/`
-- [ ] T008 Configure global error handling and display mechanism. Paths: `./src/components/ErrorDisplay.jsx`, `./src/App.jsx`
-- [ ] T009 Setup environment configuration management. Path: `./.env`
+- [x] T004 Setup base React Router configuration. Path: `./src/App.jsx` ✅ (완료)
+- [x] T005 [P] Implement JWT-based authentication service and context. Paths: `./src/services/authService.js`, `./src/context/AuthContext.jsx` ✅ (완료)
+- [x] T006 [P] Setup API client configuration for RESTful API. Path: `./src/services/apiClient.js` ✅ (완료)
+- [x] T007 Create base models/entities that all stories depend on. Path: `./src/types/` ✅ (완료)
+- [x] T008 Configure global error handling and display mechanism. Paths: `./src/components/ErrorDisplay.jsx`, `./src/App.jsx` ✅ (완료)
+- [x] T009 Setup environment configuration management. Path: `./.env` ✅ (완료)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
