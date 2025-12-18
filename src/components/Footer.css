@@ -1,0 +1,54 @@
+.Footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.Footer .web {
+    display: flex;
+    flex-direction: column;
+}
+
+.Footer .brand {
+    display: flex;
+    align-items: center;
+}
+
+.Footer .title {
+    background: linear-gradient(to right, #f97316, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: transparent;
+}
+
+.Footer .description {
+    padding: 10px 10px;
+}
+
+.service, .client, .request{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.service-link {
+  text-decoration: none;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.service-link:hover {
+  text-decoration: underline;
+}
+
+.info{
+    margin-top: 10vh;
+    padding-top: 10vh;
+    border-top: 1px solid #e5e7eb;
+    flex-basis: 100%;
+    justify-content: center;
+    display: flex;
+}
