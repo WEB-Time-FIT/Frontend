@@ -1,9 +1,11 @@
 import './Footer.css';
 import Icon from '../assets/TimeFit_Logo.png'
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Siheung from '../assets/Siheung-img.svg'
+import Tuk from '../assets/tuk-logo.png'
+import Character from '../assets/haero_toro-image.webp'
 
 const Footer = () => {
-    const nav = useNavigate();
     return (
         <footer className="Footer">
             <div className="web">
@@ -37,7 +39,16 @@ const Footer = () => {
                 <div>주소: 경기도 시흥시 산기대학로</div>
             </div>
             <div className='info'>
-                © 2024 시흥시 일자리 매칭. All rights reserved.
+                <div className='images'>
+                    <img src={Tuk} width={145.95} />
+                    <img src={Siheung} width={88.29} />
+                    <img src={Character} width={67.97} />            
+                </div>
+                <div className='text'>
+                    <p>경기도 시흥시 산기대학로 237 (정왕동)</p>
+                    <p className='brand'>TimeFit</p>
+                    <p className='copy_right'>© 2025 TimeFit. All Rights Reserved.</p>
+                </div>
             </div>
         </footer>
     );
