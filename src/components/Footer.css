@@ -1,7 +1,7 @@
 .Footer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 20px 0;
 }
 
@@ -45,8 +45,8 @@
 }
 
 .info{
-    margin-top: 10vh;
     padding-top: 10vh;
+    margin: 20px 0;
     border-top: 1px solid #e5e7eb;
     flex-basis: 100%;
     justify-content: center;
