@@ -1,11 +1,12 @@
 import MainLayout from '../layouts/MainLayout';
+import HomeCarousel from '../components/HomeCarousel';
 
 const Home = () => {
-    return (
+  return (
     <MainLayout>
-      {/* 홈 전용 콘텐츠가 생기면 여기 추가 */}
+      <HomeCarousel />
     </MainLayout>
-    );
+  );
 };
 
 export default Home;

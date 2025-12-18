@@ -4,7 +4,6 @@ import { useAuth } from '../context/AuthContext';
 import { JobSeekerRegistrationForm } from '../components/auth/JobSeekerRegistrationForm';
 import { EmployerRegistrationForm } from '../components/auth/EmployerRegistrationForm';
 import { RegistrationType } from '../types/auth';
-import MainLayout from '../layouts/MainLayout';
 import './Login.css';
 
 const Login = () => {
