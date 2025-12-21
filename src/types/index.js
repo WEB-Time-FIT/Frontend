@@ -83,3 +83,6 @@ export const Application = {
   applicationDate: null,
   status: ApplicationStatus.SUBMITTED,
 };
+
+
+
