@@ -12,7 +12,7 @@ const MainLayout = ({ children }) => {
   // [개발용 임시 상태]
   // true로 설정하면: 마이페이지/로그아웃 버튼이 보임 (마이페이지 작업용)
   // false로 설정하면: 로그인 버튼이 보임
-  const isLoggedIn = true; 
+  const isLoggedIn = false; 
   // -----------------------------------------------------------
 
   const navItems = [

@@ -28,12 +28,15 @@ const Find = () => {
     setErrorRef.current = setError;
   }, [setError]);
 
-  // 일자리 목록 로드 함수
+  // 일자리 목록 로드 함수 (디바운싱 적용)
   const loadJobs = useCallback(async () => {
     setLoading(true);
     try {
       const filters = {};
-      if (searchQuery) filters.q = searchQuery;
+      // 검색어 sanitize
+      if (searchQuery?.trim()) {
+        filters.q = searchQuery.trim();
+      }
       if (selectedCategory) filters.category = selectedCategory;
       if (selectedLocation) filters.location = selectedLocation;
 
@@ -141,6 +144,7 @@ const Find = () => {
               <div className="Find__search-input-wrapper">
                 <input
                   type="text"
+                  name='search'
                   className="Find__search-input"
                   placeholder="일자리 제목 또는 회사명으로 검색..."
                   value={searchQuery}

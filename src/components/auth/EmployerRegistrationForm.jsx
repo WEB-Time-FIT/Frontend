@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { registerEmployer } from '../../services/authService';
+import { sanitizeEmail, sanitizeInput } from '../../utils/inputSanitizer';
 import './EmployerRegistrationForm.css';
 
 /**
@@ -53,13 +54,13 @@ export function EmployerRegistrationForm({
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.companyName.trim()) {
+    const sanitizedCompanyName = sanitizeInput(formData.companyName, 100);
+    if (!sanitizedCompanyName) {
       newErrors.companyName = '업체명을 입력해주세요.';
     }
 
-    if (!formData.email.trim()) {
-      newErrors.email = '이메일을 입력해주세요.';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    const sanitizedEmail = sanitizeEmail(formData.email);
+    if (!sanitizedEmail) {
       newErrors.email = '올바른 이메일 형식을 입력해주세요.';
     }
 
@@ -67,13 +68,17 @@ export function EmployerRegistrationForm({
       newErrors.password = '비밀번호를 입력해주세요.';
     } else if (formData.password.length < 8) {
       newErrors.password = '비밀번호는 8자 이상이어야 합니다.';
+    } else if (formData.password.length > 128) {
+      newErrors.password = '비밀번호는 128자 이하여야 합니다.';
     }
 
-    if (!formData.contact.trim()) {
+    const sanitizedContact = sanitizeInput(formData.contact, 20);
+    if (!sanitizedContact) {
       newErrors.contact = '연락처를 입력해주세요.';
     }
 
-    if (!formData.address.trim()) {
+    const sanitizedAddress = sanitizeInput(formData.address, 200);
+    if (!sanitizedAddress) {
       newErrors.address = '주소를 입력해주세요.';
     }
 
@@ -91,7 +96,16 @@ export function EmployerRegistrationForm({
     setIsSubmitting(true);
 
     try {
-      const response = await registerEmployer(formData);
+      // 입력 데이터 sanitize
+      const sanitizedData = {
+        companyName: sanitizeInput(formData.companyName, 100),
+        email: sanitizeEmail(formData.email),
+        password: formData.password, // 비밀번호는 서버에서 해싱되므로 sanitize 불필요
+        contact: sanitizeInput(formData.contact, 20),
+        address: sanitizeInput(formData.address, 200),
+      };
+
+      const response = await registerEmployer(sanitizedData);
       if (onSuccess) {
         onSuccess(response);
       }

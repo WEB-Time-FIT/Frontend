@@ -1,0 +1,56 @@
+.employer-my-page {
+  padding: 32px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.employer-my-page__header {
+  margin-bottom: 32px;
+}
+
+.employer-my-page__title {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.employer-my-page__subtitle {
+  margin: 0;
+  font-size: 16px;
+  color: #64748b;
+}
+
+.employer-my-page__tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 24px;
+}
+
+.employer-my-page__tab {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 16px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+}
+
+.employer-my-page__tab:hover {
+  color: #0f172a;
+}
+
+.employer-my-page__tab--active {
+  color: #007bff;
+  border-bottom-color: #007bff;
+}
+
+.employer-my-page__content {
+  min-height: 400px;
+}
+
