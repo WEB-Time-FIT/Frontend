@@ -52,7 +52,7 @@ const MainLayout = ({ children }) => {
               />
               <Button
                 text="로그아웃"
-                type="Plain" // 로그아웃은 보통 강조하지 않으므로 Plain 권장
+                type="Logout"
                 onClick={handleLogout}
               />
             </div>

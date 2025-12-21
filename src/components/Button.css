@@ -11,10 +11,10 @@
 .Button_Plain {
     background-color: transparent;
     color: #1f2937;
-    
 }
 
-.Button_Plain:hover {
+.Button_Plain:hover,
+.Button_Logout:hover {
     background-color: #f3f4f6;
 }
 
@@ -44,4 +44,10 @@
     font-weight: 700;
     font-size: 1.2rem;
     color: transparent;
+}
+
+.Button_Logout{
+    background-color: transparent;
+    color: #1f2937;
+    border: 1px solid #e5e7eb;
 }
