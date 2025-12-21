@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Tasks from './pages/Tasks';
 
 import './App.css';
+import MyPage from './pages/MyPage';
 
 function AppContent() {
   const { error, clearError } = useErrorHandler();
@@ -19,8 +20,7 @@ function AppContent() {
         <Route path="/" element={<Home />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/find" element={<Find />} />
-        <Route path="/mypage" element={<SeekerMyPage />} />
-        <Route path="/seeker/mypage" element={<SeekerMyPage />} />
+        <Route path="/mypage" element={<MyPage />} />
         <Route path="/login" element={<Login />} />
       </Routes>
 

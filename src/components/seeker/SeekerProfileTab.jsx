@@ -73,7 +73,7 @@ const SeekerProfileTab = ({ user }) => {
         </div>
       </div>
 
-      {/* [중요 해결 포인트] 
+      {/* [중요 해결 포인트]
         조건부 렌더링(&&)을 사용합니다.
         isEditing이 true일 때만 ProfileEditModal이 새로 '생성'됩니다.
         따라서 모달 내부에서 useEffect를 쓸 필요 없이 useState 초기값만으로 충분합니다.
