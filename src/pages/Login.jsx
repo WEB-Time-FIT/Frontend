@@ -74,16 +74,21 @@ const Login = () => {
     }
   };
 
+  // [수정] 회원가입 성공 핸들러 개선
   const handleSignupSuccess = async response => {
-    // 회원가입 성공 시 토큰이 이미 authService에서 저장됨
-    if (response.token && response.user) {
-      updateUser(response.user);
-      navigate('/');
+    // authService.js에서 이미 토큰 저장과 user 객체 생성을 마친 상태입니다.
+    // response.token이 아니라 response.accessToken을 확인하거나, 
+    // 확실하게 response.user만 확인해도 충분합니다.
+    if (response.user) {
+      updateUser(response.user); // Context 업데이트 (헤더 이름 표시 등)
+      alert('회원가입이 완료되었습니다!'); // 사용자 피드백 추가
+      navigate('/'); // 메인 페이지로 이동
     }
   };
 
   const handleSignupError = error => {
     console.error('회원가입 오류:', error);
+    // 필요 시 에러 메시지를 상태로 관리하여 화면에 표시할 수 있습니다.
   };
 
   return (

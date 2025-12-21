@@ -3,8 +3,9 @@ import {
   login as authLogin,
   logout as authLogout,
   getStoredUser,
-  isAuthenticated,
+  getToken,
 } from '../services/authService';
+import { isTokenExpired } from '../utils/jwtUtils';
 
 const AuthContext = createContext(null);
 
@@ -16,14 +17,24 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 초기 로드 시 저장된 사용자 정보 확인
-  useEffect(() => {
-    if (isAuthenticated()) {
+ useEffect(() => {
+    const initAuth = () => {
+      const token = getToken();
       const storedUser = getStoredUser();
-      if (storedUser) {
-        setUser(storedUser);
+
+      if (token && storedUser) {
+        // 토큰이 유효한지(시간이 안 지났는지) 확인
+        if (isTokenExpired(token)) {
+          console.log('토큰이 만료되어 자동 로그아웃됩니다.');
+          authLogout(); // 스토리지 비우기
+          setUser(null);
+        } else {
+          setUser(storedUser); // 유효하면 로그인 유지
+        }
       }
-    }
+    };
+
+    initAuth();
     setLoading(false);
   }, []);
 
@@ -69,13 +80,9 @@ export function AuthProvider({ children }) {
     loading,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-/**
- * AuthContext를 사용하는 Hook
- * @returns {Object} AuthContext 값
- */
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {

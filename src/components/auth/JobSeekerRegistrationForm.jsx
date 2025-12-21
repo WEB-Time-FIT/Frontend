@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { registerJobSeeker } from '../../services/authService';
 import { JobCategories } from '../../types/auth';
+import { sanitizeInput, sanitizeEmail } from '../../utils/inputSanitizer'; 
 import './JobSeekerRegistrationForm.css';
 
 /**
  * 구직자 회원가입 폼 컴포넌트
- * Step 1: 기본 정보 입력 (이름, 이메일, 비밀번호, 연락처, 주소)
- * Step 2: 관심 직종 선택 (복수 선택)
+ * Step 1: 기본 정보 입력
+ * Step 2: 관심 직종 선택
  */
 export function JobSeekerRegistrationForm({
   onSuccess,
@@ -55,6 +56,7 @@ export function JobSeekerRegistrationForm({
   };
 
   const validateStep1 = () => {
+    // ... 기존 유효성 검사 로직 유지 ...
     const newErrors = {};
 
     if (!step1Data.name.trim()) {
@@ -102,6 +104,7 @@ export function JobSeekerRegistrationForm({
     });
   };
 
+  // [수정] 최종 제출 핸들러에서 보안 처리 적용
   const handleStep2Submit = async e => {
     e.preventDefault();
 
@@ -115,11 +118,20 @@ export function JobSeekerRegistrationForm({
     setIsSubmitting(true);
 
     try {
-      const registrationData = {
-        ...step1Data,
+      // [보안 개선] 서버 전송 직전에 데이터 정제 (Sanitization)
+      // 비밀번호는 특수문자가 포함될 수 있으므로 정제하지 않고 원본 그대로 보냅니다.
+      const cleanData = {
+        name: sanitizeInput(step1Data.name),
+        email: sanitizeEmail(step1Data.email),
+        contact: sanitizeInput(step1Data.contact),
+        address: sanitizeInput(step1Data.address),
+        password: step1Data.password, // 원본 유지
         jobCategories: step2Data.jobCategories,
       };
-      const response = await registerJobSeeker(registrationData);
+
+      // 정제된 데이터(cleanData)로 회원가입 요청
+      const response = await registerJobSeeker(cleanData);
+      
       if (onSuccess) {
         onSuccess(response);
       }
@@ -145,6 +157,7 @@ export function JobSeekerRegistrationForm({
   if (step === 1) {
     return (
       <form onSubmit={handleStep1Submit} className="registration-form">
+        {/* ... JSX 내용은 기존과 동일하므로 그대로 유지 ... */}
         {/* 진행 표시 */}
         <div className="progress-indicator">
           <div className="progress-step progress-step--active">1</div>
@@ -254,14 +267,13 @@ export function JobSeekerRegistrationForm({
   // Step 2: 관심 직종 선택
   return (
     <form onSubmit={handleStep2Submit} className="registration-form">
-      {/* 진행 표시 */}
+      {/* ... JSX 내용은 기존과 동일하므로 그대로 유지 ... */}
       <div className="progress-indicator">
         <div className="progress-step progress-step--inactive">1</div>
         <div className="progress-line progress-line--active"></div>
         <div className="progress-step progress-step--active">2</div>
       </div>
 
-      {/* 관심 직종 선택 섹션 */}
       <div className="job-categories-section">
         <div className="job-categories-header">
           <span className="job-categories-icon">❤️</span>

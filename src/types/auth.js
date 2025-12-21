@@ -4,8 +4,8 @@
 
 // 회원가입 타입 Enum
 export const RegistrationType = {
-  JOB_SEEKER: 'JOB_SEEKER',
-  EMPLOYER: 'EMPLOYER',
+  JOB_SEEKER: 'APPLICANT',
+  EMPLOYER: 'RECRUITER',
 };
 
 // 구직자 회원가입 Step 1 데이터 구조

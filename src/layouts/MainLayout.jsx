@@ -3,17 +3,13 @@ import Button from '../components/Button';
 import ButtonList from '../components/ButtonList';
 import Logo from '../assets/TimeFit_Logo.png';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './MainLayout.css';
 
 const MainLayout = ({ children }) => {
   const nav = useNavigate();
-
-  // -----------------------------------------------------------
-  // [개발용 임시 상태]
-  // true로 설정하면: 마이페이지/로그아웃 버튼이 보임 (마이페이지 작업용)
-  // false로 설정하면: 로그인 버튼이 보임
-  const isLoggedIn = false; 
-  // -----------------------------------------------------------
+  
+  const { user, logout } = useAuth(); 
 
   const navItems = [
     { label: '홈', onClick: () => nav('/'), type: 'Plain' },
@@ -21,15 +17,14 @@ const MainLayout = ({ children }) => {
     { label: '일자리 찾기', onClick: () => nav('/find'), type: 'Plain' },
   ];
 
-  // 마이페이지 이동 핸들러
   const handleMyPageClick = () => {
     nav('/mypage');
   };
 
-  // 로그아웃 핸들러 (임시)
   const handleLogout = () => {
-    alert('로그아웃 되었습니다. (UI 테스트)');
-    nav('/');
+    logout(); 
+    alert('로그아웃 되었습니다.');
+    nav('/'); 
   };
 
   return (
@@ -45,9 +40,11 @@ const MainLayout = ({ children }) => {
           />
         }
         rightChild={
-          // 임시 변수 isLoggedIn에 따라 버튼 분기
-          isLoggedIn ? (
+          user ? (
             <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <span style={{ fontSize: '14px', marginRight: '5px', color: '#555', fontWeight: 'bold' }}>
+                {user.name || user.email} 님
+              </span>
               <Button
                 text="마이페이지"
                 type="Plain"
@@ -55,7 +52,7 @@ const MainLayout = ({ children }) => {
               />
               <Button
                 text="로그아웃"
-                type="Plain"
+                type="Plain" // 로그아웃은 보통 강조하지 않으므로 Plain 권장
                 onClick={handleLogout}
               />
             </div>
@@ -74,4 +71,3 @@ const MainLayout = ({ children }) => {
 };
 
 export default MainLayout;
-

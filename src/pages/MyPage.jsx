@@ -2,6 +2,7 @@ import { useAuth } from '../context/AuthContext';
 import { Navigate } from 'react-router-dom'; // 리다이렉트를 위해 추가
 import EmployerMyPage from './employer/EmployerMyPage';
 import SeekerMyPage from './SeekerMyPage';
+import {RegistrationType} from '../types/auth';
 
 /**
  * 마이페이지
@@ -22,7 +23,7 @@ const MyPage = () => {
   }
 
   // 3. 채용자인 경우 채용자 마이페이지 표시
-  if (user.role === 'EMPLOYER') {
+  if (user.role === RegistrationType.EMPLOYER) {
     return <EmployerMyPage />;
   }
 
