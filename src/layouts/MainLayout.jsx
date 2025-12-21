@@ -2,19 +2,20 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import ButtonList from '../components/ButtonList';
 import Logo from '../assets/TimeFit_Logo.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './MainLayout.css';
 
 const MainLayout = ({ children }) => {
   const nav = useNavigate();
+  const location = useLocation();
   
   const { user, logout } = useAuth(); 
 
   const navItems = [
-    { label: '홈', onClick: () => nav('/'), type: 'Plain' },
-    { label: '태스크 보드', onClick: () => nav('/tasks'), type: 'Plain' },
-    { label: '일자리 찾기', onClick: () => nav('/find'), type: 'Plain' },
+    { label: '홈', onClick: () => nav('/'), type: 'Plain', active: location.pathname === '/' },
+    { label: '태스크 보드', onClick: () => nav('/tasks'), type: 'Plain', active: location.pathname === '/tasks' },
+    { label: '일자리 찾기', onClick: () => nav('/find'), type: 'Plain', active: location.pathname === '/find' },
   ];
 
   const handleMyPageClick = () => {
@@ -49,6 +50,7 @@ const MainLayout = ({ children }) => {
                 text="마이페이지"
                 type="Plain"
                 onClick={handleMyPageClick}
+                active={location.pathname === '/mypage'}
               />
               <Button
                 text="로그아웃"

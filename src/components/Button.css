@@ -13,9 +13,19 @@
     color: #1f2937;
 }
 
+.Button_Plain.active {
+    background: linear-gradient(to bottom right, #f97316, #f97316, #2563eb);
+    color: white;
+}
+
 .Button_Plain:hover,
 .Button_Logout:hover {
     background-color: #f3f4f6;
+}
+
+.Button_Plain.active:hover {
+    background: linear-gradient(to bottom right, #f97316, #f97316, #2563eb);
+    opacity: 0.9;
 }
 
 .Button_Login {
@@ -26,6 +36,7 @@
 }
 
 .Button_Logo {
+    padding: 10px 10px;
     display: flex;
     align-items: center;
 }
